@@ -1,5 +1,3 @@
-# Styleguide
-
 ## Índice
 
 1. [Introdução](#introdução)
