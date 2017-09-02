@@ -1,2 +1,5 @@
-# styleguide
-This is my personal coding styleguide. 
+# Styleguide
+
+> This is my personal coding styleguide. 
+
+## Table of contents
