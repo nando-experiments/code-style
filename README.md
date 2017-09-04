@@ -1,4 +1,4 @@
-Meu guia pessoal de estilo de codificação
+# Meu guia de estilo de codificação
 
 ## Índice
 
@@ -13,14 +13,15 @@ Meu guia pessoal de estilo de codificação
 	2. [Orientações de marcação](#orientações-de-marcação)
 		1. [Etiquetas de fechamento]()
 		2. [Aspas duplas]()
-		3. [UTF-8 Encoding]()
-		4. [Lowercase](#lowercase)
+		3. [HTML5 doctype e UTF-8 Encoding]()
+		5. [Acessibilidade](#acessibilidade)
+		5. [Lowercase](#lowercase)
 8. [Stylesheets](#stylesheets)
 9. [JavaScript](#javascripts)
 
 ## Introdução
 
-Eu costumo seguir o que a maioria no mercado segue, a comunidade e grandes corporações como Google, Facebook e Twitter. Por isso montei esse meu guia pessoal de estilo de codificação seguindo esses padrões de mercado, e claro, com um pouco do meu gosto pessoal.
+Eu costumo seguir o que a maioria do mercado segue, a comunidade e grandes corporações como Google, Facebook e Twitter. Por isso montei esse meu guia pessoal de estilo de codificação seguindo esses padrões de mercado, e claro, com um pouco do meu gosto pessoal.
 
 ## Orientações Gerais
 
@@ -28,13 +29,17 @@ Eu costumo seguir o que a maioria no mercado segue, a comunidade e grandes corpo
 * O markup deve ser bem formatado, semanticamente correto e geralmente válido.
 * O JavaScript deve melhorar progressivamente (Progressive enhancement) a experiência.
 
-> **Lembre-se:** ==Não há certo ou errado, apenas o que o time decidiu.==
+> **Lembre-se:** Não há certo ou errado, apenas o que o time decidiu.
 
 ## Legibilidade vs Compressão
 
-Eu prezo pela legibilidade do arquivo que está sendo lido. Não há necessidade do desenvolvedor comprimir o HTML, CSS, JS/JSON propositadamente, o que custa quebrar as chaves de um objeto?
+Eu prezo pela legibilidade do arquivo que está sendo lido. Não há necessidade do desenvolvedor comprimir o HTML, CSS, JS/JSON propositadamente.
 
 Por esse motivo que foram criados tarefas (gulp, grunt, rake, lambdas, etc) lado do servidor para minificar automaticamente todos os arquivos.
+
+---
+
+**Exemplo em HTML**
 
 *Ruim*
 
@@ -50,8 +55,24 @@ Por esse motivo que foram criados tarefas (gulp, grunt, rake, lambdas, etc) lado
 </header>
 ```
 
----
+**Exemplo em CSS**
 
+*Ruim*
+
+```css
+.site-paragraph {color:#333;text-transform:uppercase;}
+```
+
+*Bom*
+
+```css
+.site-paragraph {
+	color: #333;
+	text-transform: uppercase;
+}
+```
+
+**Exemplo em Javascript**
 
 *Ruim*
 
@@ -79,38 +100,25 @@ module.exports = {
 }
 ```
 
----
-
-*Ruim*
-
-```css
-.site-paragraph {color:#333;text-transform:uppercase;}
-```
-
-*Bom*
-
-```css
-.site-paragraph {
-  color: #333;
-  text-transform: uppercase;
-}
-```
-
 ## Indentação
 
-Use soft tabs com 2 espaços e numca misture espaços com tabs!
-
-Para meus projetos pessoais que envolvem HTML, CSS/SASS e JavaScript eu costumo usar [2 espaços](https://google.github.io/styleguide/htmlcssguide.html#Indentation), mas quando estou trabalhando com um time que cuida desse tipo de discussão eu sigo a risca o a cartilham, se o time decidir usar tabs ou 4 espaços não tem problema.
+Para meus projetos pessoais eu costumo usar [2 espaços](https://google.github.io/styleguide/htmlcssguide.html#Indentation), mas quando estou trabalhando com um time que cuida desse tipo de discussão eu sigo a risca o a cartilham, se o time decidir usar tabs ou 4 espaços não tem problema.
 
 Eu uso espaços ao invés de tabs porque as tabs nem sempre são exibidas no mesmo tamanho em todos os dispositivos. Os espaços são sempre espaços. :)
+
+> Use soft tabs com 2 espaços e nunca misture espaços com tabs!
+
+---
+
+**Exemplo em HTMl**
 
 *Ruim*
 
 ```html
 <section class="site-paragraph">
-  <p>Lorem ipsum 
-	  <code>laboris</code>...
-	</p>
+  <p>Lorem ipsum
+    <code>laboris</code>...
+  </p>
 </section>
 ```
 
@@ -122,13 +130,13 @@ Eu uso espaços ao invés de tabs porque as tabs nem sempre são exibidas no mes
 </section>
 ```
 
----
+**Exemplo em CSS**
 
 *Ruim*
 
 ```css
 .site-paragraph {
-	color: #333;
+  color: #333;
   text-transform: uppercase;
      margin-bottom: .5rem;
 }
@@ -153,7 +161,7 @@ Como eu trabalho com Progressive enhancement meus projetos abrangem o máximo de
 
 Eu costumo experimentar o máximo de frameworks e bibliotecas antes de decidir qual usar em um projeto.
 
-As que estou testando e usando atualmente são:
+As que estou usando atualmente são:
 
 * **SASS** - Folhas de estilo sintaticamente impressionantes :)
 * **jQuery** - Uso sempre que posso;
@@ -178,7 +186,7 @@ Eu uso **HTML5** desde 2012, quando descobri que podia dar suporte progressivo u
 
 ### Orientações de marcação
 
-Aqui estão algumas dicas do meu estilo de codificar **HTML**. Lembre-se de que ==**isso depende da sua equipe**==, mas você deve aplicá-los uma vez que eles estão decididos. Pense em instalar linters no seu fluxo de trabalho.
+Aqui estão algumas dicas do meu estilo de codificar **HTML**. Lembre-se de que **isso depende da sua equipe**, mas você deve aplicá-los uma vez que eles estão decididos. Pense em instalar linters no seu fluxo de trabalho.
 
 #### 1. Etiquetas de fechamento
 
@@ -192,19 +200,46 @@ Use aspas duplas `""` para todos os valores dos atributos. Quando você precisa 
 <input type="textarea" value="&quot;sarcastic air quotes&quot;">
 ```
 
-#### 3. UTF-8 Encoding
+#### 3. HTML5 doctype e UTF-8 Encoding
 
-Sempre especifique a codificação de uma página HTML declarando o encoding dentro da tag `<head>`.
+Nunca esqueça de adicionar o doctype `<!DOCTYPE html>` em sua páginas HTML, de preferência do HTML5 e sempre especifique a codificação de uma página HTML declarando o encoding dentro da tag `<head>`.
 
 ```html
-<head>
-  <meta charset="UTF-8">
-</head>
+<!DOCTYPE html> <!-- o doctype especifíca o tipo do documento como HTML -->
+<html>
+  <head>
+    <meta charset="UTF-8"> <!-- encoding da página especificado como UTF-8 -->
+  </head>
+</html>
 ```
 
-#### 4. Lowercase
+#### 4. Acessibilidade
 
-Use minúsculas em todos os nomes de tags e de atributos.
+A marcação e o código devem ser escritos de forma intrinsecamente acessível, independentemente do projeto em andamento.
+
+**O atributo de linguagem `lang`**
+
+Direto do especificação do HTML5:
+
+> Authors are encouraged to specify a lang attribute on the root html element, giving the document's language. This aids speech synthesis tools to determine what pronunciations to use, translation tools to determine what rules to use, and so forth.
+
+```html
+<html lang="pt-br">
+  <!-- ... -->
+</html>
+```
+
+**O atributo `role`**
+
+Ao marcar o conteúdo, os ARIA roles são o método preferido de designar o papel das seções em nossa marcação quando seu uso pode ser ambíguo.
+
+```html
+<a href="~link~" role="button">Botão de link</a>
+```
+
+#### 5. Lowercase
+
+Sempre use minúsculas (lowercase) em todos os nomes de tags e em todos os atributos do seu HTML.
 
 *Ruim*
 
@@ -222,10 +257,13 @@ Use minúsculas em todos os nomes de tags e de atributos.
 </section>
 ```
 
+**Lembre sempre**
+
+> Esforce-se para manter padrões HTML e a semântica, mas não à custa de praticidade. Use a menor quantidade de marcação com o menor número de complexidades sempre que possível.
 
 ## Stylesheets
 
-Aqui estão algumas dicas o seu **CSS**. Lembre-se de que ==**isso depende da sua equipe**==, mas você deve aplicá-los uma vez que eles estão decididos. Pense em instalar linters no seu fluxo de trabalho.
+Aqui estão algumas dicas para o seu **CSS**. Lembre-se de que **isso depende da sua equipe**, mas você deve aplicá-los uma vez que eles estão decididos. Pense em instalar linters no seu fluxo de trabalho.
 
 ### Comentários
 
