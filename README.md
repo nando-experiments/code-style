@@ -1,5 +1,3 @@
-# Meu guia de estilo de codificação
-
 ## Índice
 
 1. [Introdução](#introdução)
